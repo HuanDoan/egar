@@ -17,4 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->get('/user/email/{email}', 'API\UserController@getUserByEmail');
+Route::middleware('auth:api')->get('/user/username/{username}', 'API\UserController@getUserByUsername');
+Route::middleware('auth:api')->put('/user/update/', 'API\UserController@update');
+
 Route::post('/register', 'API\PassportController@register');

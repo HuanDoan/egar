@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\User;
+use App\Users;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -50,5 +51,5 @@ class PassportController extends Controller
         $success['username']    = $user->username;
         $success['email']       = $user->email;
         return response()->json(['success'=>$success], $this->successStatus);
-    } 
+    }
 }

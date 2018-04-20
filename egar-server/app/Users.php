@@ -24,4 +24,8 @@ class Users extends Model
     public function comment(){
         return $this->hasMany('App\Comment');
     }
+
+    public function permission(){
+        return $this->belongsTo('App\Roles', 'role', 'id');
+    }
 }
