@@ -8,9 +8,10 @@ class Users extends Model
 {
     //
     protected $table = 'users';
+    protected $hidden = ['id', 'password', 'remember_token'];
 
     public function created_store(){
-        return $this->hasMany('App\Store');
+        return $this->hasMany('App\Store', 'created_by', 'id');
     }
 
     public function created_post(){

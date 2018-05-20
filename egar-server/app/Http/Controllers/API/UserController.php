@@ -26,8 +26,8 @@ class UserController extends Controller
     }
 
     public function getUserByUsername($username){
-        $user = User::where('email', $email)->get();
-        return response()->json(['success'=>$username], $this->successStatus);
+        $user = User::where('username', $username)->get();
+        return response()->json(['success'=>$user], $this->successStatus);
     }
 
     public function update(Request $request){

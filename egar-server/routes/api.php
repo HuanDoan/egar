@@ -13,12 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::middleware('auth:api')->get('/user/email/{email}', 'API\UserController@getUserByEmail');
-Route::middleware('auth:api')->get('/user/username/{username}', 'API\UserController@getUserByUsername');
-Route::middleware('auth:api')->put('/user/update/', 'API\UserController@update');
+    Route::get('/user/email/{email}', 'API\UserController@getUserByEmail');
+    Route::get('/user/username/{username}', 'API\UserController@getUserByUsername');
+    Route::put('/user/update/', 'API\UserController@update');
+    
+    Route::group(['prefix' => 'store'], function(){
+        Route::get('/all', 'API\MapController@getAllStore')->name('store_all');
+        Route::post('/add', 'API\MapController@addNewStore')->name('store_add');
+        Route::post('/closest', 'API\MapController@getClosestStore')->name('store_closest');
+    });
+});
 
 Route::post('/register', 'API\PassportController@register');

@@ -24,7 +24,7 @@ class CpanelController extends Controller
     ];
 
     public function dashboard(){
-        var_dump(Auth::guard('admin')->user()->role);
+        echo 'Dashboard';
     }
 
     public function login(){
@@ -61,7 +61,8 @@ class CpanelController extends Controller
 
     public function get_users(){
         $users = Users::all();
-        return view('cpanel/pages/users', compact('users'));
+        $roles = Roles::all();
+        return view('cpanel/pages/users', compact('users', 'roles'));
     }
 
     public function get_add_users(){
@@ -87,5 +88,9 @@ class CpanelController extends Controller
         }
 
         return redirect()->back()->with('addsuccess', 'success');
+    }
+
+    public function updateUser($username){
+        return redirect()->back();
     }
 }

@@ -9,13 +9,13 @@
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <a href="#">Quản lý người dùng</a>
+                    <a href="#">Quản lý cửa hàng</a>
                 </li>
             </ul>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h1 class="page-title"> QUẢN LÝ NGƯỜI DÙNG</h1>
+        <h1 class="page-title"> QUẢN LÝ CỬA HÀNG</h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
         <div class="row">
@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a class="btn sbold green" href="{{route('cpanel.get.add.users')}}"> Add New User
+                                        <a class="btn sbold green" href="{{route('cpanel.store.create')}}"> Add New Store
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </div>
@@ -49,16 +49,17 @@
                                             <span></span>
                                         </label>
                                     </th>
-                                    <th> Username </th>
-                                    <th> Fullname </th>
-                                    <th> Email </th>
-                                    <th> Role </th>
-                                    <th> Joined </th>
+                                    <th> Name </th>
+                                    <th> Image </th>
+                                    <th> Address </th>
+                                    <th> Created By </th>
+                                    <th> Created At </th>
+                                    <th> Status </th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
+                                @foreach($stores as $store)
                                 <tr>
                                     <td>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -67,35 +68,28 @@
                                         </label>
                                     </td>
                                     <td>
-                                        {{$user->username}}
+                                        {{$store->name}}
                                     </td>
-                                    <td>{{$user->fullname}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <td><img width="200" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDW0_GfwJ549_8H7iUTPt1FQzYfh9vTNhp3hyLKzadSwJKLuzZ" alt=""></td>
+                                    <td>{{$store->address}}</td>
                                     <td>
-                                        @if($user->role == 1)
-                                        <span class="btn btn-xs red"> {{$user->permission->title}} </span>
+                                        <a href="#" class="btn btn-sm default">
+                                            <span class="icon-user"></span> {{$store->createdBy->username}}
+                                        </a></td>
+                                    <td>
+                                        {{date('d/m/Y', strtotime($store->created_at))}}
+                                    </td>
+                                    <td>
+                                        @if($store->status == 1)
+                                        <span class="btn btn-xs green"> Accepted </span>
                                         @endif
-                                        @if($user->role == 2)
-                                        <span class="btn btn-xs purple"> {{$user->permission->title}} </span>
-                                        @endif    
-                                        @if($user->role == 3)
-                                        <span class="btn btn-xs green"> {{$user->permission->title}} </span>
-                                        @endif  
-                                        @if($user->role == 4)
-                                        <span class="btn btn-xs default"> {{$user->permission->title}} </span>
-                                        @endif    
-                                        @if($user->role == 5)
-                                        <span class="btn btn-xs dark"> {{$user->permission->title}} </span>
+                                        @if($store->status == 0)
+                                        <span class="btn btn-xs purple"> Pending </span>
                                         @endif                                   
                                     </td>
                                     <td>
-                                        {{date('d/m/Y', strtotime($user->created_at))}}
-                                    </td>
-                                    <td>
-                                        
-                                        <a href="javascript:void(0)" onclick="loadUser(this)" data-value="{{$user->username}}" class="btn green btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                                        <a href="javascript:void(0)" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a>
-                                        <a href="javascript:void(0)" class="btn dark btn-xs"><i class="fa fa-ban"></i> Ban</a>
+                                        <a href="#" class="btn green btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                        <a href="#" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -109,8 +103,4 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
-
-@include('cpanel.include.user_modal')
-
-
 @endsection

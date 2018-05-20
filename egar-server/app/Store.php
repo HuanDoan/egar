@@ -8,9 +8,11 @@ class Store extends Model
 {
     //
     protected $table = 'store';
+    protected $fillable = ['name', 'lat', 'lng', 'created_by', 'address', 'phone', 'rate', 'description', 'avatar', 'status'];
+    protected $hidden = ['id'];
 
-    public function created_by(){
-        return $this->belongsTo('App\Users');
+    public function createdBy(){
+        return $this->belongsTo('App\Users', 'created_by', 'id');
     }
 
     public function rating(){

@@ -22,12 +22,15 @@
         <script src="{{ url('/cpanel/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/assets/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/assets/global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js')}}" type="text/javascript"></script>
+        <script src="{{ url('/cpanel/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js')}}" type="text/javascript"></script>
+        <script src="{{ url('/cpanel/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js')}}" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{ url('/cpanel/assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="{{ url('/cpanel/assets/pages/scripts/table-datatables-managed.min.js')}}" type="text/javascript"></script>
+        <script src="{{ url('/cpanel/assets/pages/scripts/ui-extended-modals.min.js')}}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ url('/cpanel/assets/layouts/layout/scripts/layout.min.js')}}" type="text/javascript"></script>
@@ -40,3 +43,4 @@
         <script src="{{ url('/cpanel/assets/pages/scripts/components-editors.js')}}" type="text/javascript"></script>
 
         <script src="{{ url('/cpanel/customize/app.js')}}" type="text/javascript"></script>
+        <script src="{{ url('/cpanel/customize/page--users.js')}}" type="text/javascript"></script>
