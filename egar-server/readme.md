@@ -46,8 +46,17 @@ Tạo 1 database với tên là egardb
 cd vào thư mục egar-server, run:
 ```
 php artisan migrate
-php artisan migrate db:seed --class:UserRoleTable
-php artisan migrate db:seed --class:UserTableSeeder
+php artisan db:seed --class=UserRoleTable
+php artisan db:seed --class=UserTableSeeder
 ```
 
 Sau đó vào lại phpmyadmin kiểm tra database.
+
+### Add appications to Oauth2 Passport
+
+Sau khi migrate database, tạo client cho oauth2.
+Chạy 
+```
+php artisan passport:client --password
+```
+Nhập tên cho client. Ví dụ: Mobile app; Sau khi chạy xong xuất hiện clientID và client secrect, đây là thông tin xác thực cho API
