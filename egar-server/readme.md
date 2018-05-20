@@ -59,4 +59,4 @@ Chạy
 ```
 php artisan passport:client --password
 ```
-Nhập tên cho client. Ví dụ: Mobile app; Sau khi chạy xong xuất hiện clientID và client secrect, đây là thông tin xác thực cho API
+Nhập tên cho client. Ví dụ: Mobile app; Sau khi chạy xong xuất hiện clientID và client secret, đây là thông tin xác thực cho API

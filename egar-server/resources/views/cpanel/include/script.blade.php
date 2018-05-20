@@ -24,6 +24,9 @@
         <script src="{{ url('/cpanel/assets/global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js')}}" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADJUCl9OkusXQarOeXBilMGRmsHO0pJAM&sensor=true"
+  type="text/javascript"></script>
+        <script src="{{ url('/cpanel/assets/global/plugins/gmaps/gmaps.min.js')}}" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{ url('/cpanel/assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
@@ -44,3 +47,4 @@
 
         <script src="{{ url('/cpanel/customize/app.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/customize/page--users.js')}}" type="text/javascript"></script>
+        <script src="{{ url('/cpanel/customize/gmap--store.js')}}" type="text/javascript"></script>

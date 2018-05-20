@@ -28,6 +28,7 @@ class StoreController extends Controller
     public function create()
     {
         //
+        return view('cpanel/pages/store_create');
     }
 
     /**
