@@ -30,13 +30,13 @@
                 <h3 class="uppercase">Quản trị</h3>
             </li>
             <li class="nav-item ">
-                <a href="#" class="nav-link">
+                <a href="{{route('cpanel.get.users')}}" class="nav-link">
                     <i class="icon-users"></i>
                     <span class="title">Quản lý người dùng</span>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="#" class="nav-link">
+                <a href="{{route('cpanel.store.index')}}" class="nav-link">
                     <i class="icon-social-dropbox"></i>
                     <span class="title">Quản lý cửa hàng</span>
                 </a>

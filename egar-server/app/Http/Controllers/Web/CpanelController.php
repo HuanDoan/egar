@@ -79,6 +79,9 @@ class CpanelController extends Controller
             'email'             => 'required|unique:users|email',
             'fullname'          => 'max:191',
             'phone'             => 'max:191',
+            'role'              => 'required',
+            'status'            => 'required',
+            'avatar'            => 'image|max:3072'
         ], $this->errMess);
 
         if ($validator->fails()) {
@@ -87,10 +90,110 @@ class CpanelController extends Controller
                         ->withInput($request->input());
         }
 
-        return redirect()->back()->with('addsuccess', 'success');
+        if ($request->file('avatar')) {
+            $fileExtension = $request->file('image')->getClientOriginalExtension();
+            $fileName = time() . "_" . rand(0,9999999) . "_" . md5(rand(0,9999999)) . "." . $fileExtension;
+            $path = '/uploads/avatar/'.$fileName;
+            $uploadPath = public_path('/uploads/avatar');
+            $request->file('image')->move($uploadPath, $fileName);
+        }
+        else{
+            $path = '';
+        }
+
+        $newUser = $request->all();
+        $newUser['password'] = bcrypt($newUser['password']);
+        $newUser['avatar'] = $path;
+
+        $user = User::create($newUser);
+
+        return redirect()->route('cpanel.get.users')->with('addsuccess', 'success');
     }
 
-    public function updateUser($username){
+    /**
+     * POST update info user
+     * @param \Illuminate\Http\Request  $request
+     * @param Request string $username
+     * 
+     * Not have tested yet
+     */
+    public function updateUser(Request $request){
+        if($request->username != $request->current_username){
+            $validator = Validator::make($request->all(), [
+                'username'          => ["unique:users","max:191","regex:/(^([a-zA-Z]+)(\d+)?$)/u"],
+                'password'          => 'nullable|max:191|min:8',
+                'confirm_password'  => 'same:password|max:191|min:8',
+                'fullname'          => 'max:191',
+                'phone'             => 'max:191',
+                'avatar'            => 'image|max:3072'
+            ], $this->errMess);
+        }
+        else{
+            $validator = Validator::make($request->all(), [
+                'password'          => 'nullable|max:191|min:8',
+                'confirm_password'  => 'same:password|max:191|min:8',
+                'fullname'          => 'max:191',
+                'phone'             => 'max:191',
+                'avatar'            => 'image|max:3072'
+            ], $this->errMess);
+        } 
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput($request->input());
+        }
+
+        $username = $request->current_username;
+        $currUser = Users::where('username', $username)->get();
+
+        Users::where('username', $username)->update([
+            'username' => $request->username,
+            'fullname' => $request->fullname,
+            'role'  => $request->role,
+            'status' => $request->status,
+            'phone' => $request->phone,
+        ]);
+        
+        $password = $request->password;
+
+        if(isset($password) && $password!=NULL){
+            $password = bcrypt($password);
+            User::where('username', $request->username)->update([
+                'password' => $password
+            ]);
+        }
+
+        if ($request->file('avatar')) {
+            $fileExtension = $request->file('image')->getClientOriginalExtension();
+            $fileName = time() . "_" . rand(0,9999999) . "_" . md5(rand(0,9999999)) . "." . $fileExtension;
+            $path = '/uploads/avatar/'.$fileName;
+            $uploadPath = public_path('/uploads/avatar');
+            $request->file('image')->move($uploadPath, $fileName);
+
+            Users::where('username', $username)->update([
+                'avatar' => $path
+            ]);
+
+            $oldPath = public_path().$currUser[0]->avatar;
+            if(file_exists($oldPath)){
+                unlink($oldPath);
+            }
+        }
+
+        return redirect()->back()->with('editSuccess', 'success');
+    }
+
+    public function banUser($username){
+        if(isset($username)&&$username!=NULL){
+            Users::where([
+                ['username', '=', $username],
+                ['role', '<>', 1],
+                ['role', '<>', 5]
+            ])->update([
+                'role' => 5
+            ]);
+        }
         return redirect()->back();
     }
 }

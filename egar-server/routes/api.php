@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::post('/add', 'API\MapController@addNewStore')->name('store_add');
         Route::post('/closest', 'API\MapController@getClosestStore')->name('store_closest');
     });
+
+    Route::get('/logout', 'API\PassportController@logout')->name('api_logout');
+    Route::get('/logout/all', 'API\PassportController@logoutAll')->name('api_logout_all');
 });
 
 Route::post('/register', 'API\PassportController@register');

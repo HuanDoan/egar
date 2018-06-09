@@ -56,6 +56,14 @@
                                     </div>
                                 </div>
 
+                                <!-- ADDRESS FIELD -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Địa chỉ</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="address" class="form-control" required />
+                                    </div>
+                                </div>
+
                                 <!-- DESC FIELD -->
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Mô tả</label>
@@ -75,7 +83,7 @@
                                                 <span class="btn default btn-file">
                                                     <span class="fileinput-new"> Select image </span>
                                                     <span class="fileinput-exists"> Change </span>
-                                                    <input type="file" name="avatar"> </span>
+                                                    <input type="file" name="avatar" accept="image/*"> </span>
                                                 <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
                                             </div>
                                         </div>
@@ -93,7 +101,8 @@
                                         <div id="">
                                             <div class="input-icon right">
                                                 <i class="fa fa-search font-blue"></i>
-                                                <input type="text" name="search" class="form-control" placeholder="Find a location"> 
+                                                <input type="text" name="search" class="form-control" placeholder="Find a location">
+                                                <br> 
                                             </div>
                                             <div id="Maps" class="map" style="width: 100%; height: 400px">
 
@@ -101,7 +110,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <!-- PHONE FIELD -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Phone</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="phone" class="form-control" required />
+                                    </div>
+                                </div>
                             </div>
+
 
                             
                             <div class="form-actions">

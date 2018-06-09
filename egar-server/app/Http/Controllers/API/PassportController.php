@@ -7,6 +7,7 @@ use App\Users;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PassportController extends Controller
 {   
@@ -51,5 +52,17 @@ class PassportController extends Controller
         $success['username']    = $user->username;
         $success['email']       = $user->email;
         return response()->json(['success'=>$success], $this->successStatus);
+    }
+
+    public function logout(Request $request){
+        $request->user()->token()->revoke();
+        $request->user()->token()->delete();
+        return response()->json(['success'=> 'Log out successful!'], $this->successStatus);
+    }
+
+    public function logoutAll(Request $request){
+        $request->user()->AauthAcessToken()->delete();
+
+        return response()->json(['success'=> 'Completed!'], $this->successStatus);
     }
 }

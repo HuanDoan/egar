@@ -99,7 +99,7 @@
                                     <label class="control-label col-md-3">Quyền truy cập</label>
                                     <div class="col-md-9">
                                         <div class="radio-list">
-                                            <select name="permission" class="form-control">
+                                            <select name="role" class="form-control">
                                                 @foreach($roles as $role)
                                                 <option value="{{$role->id}}" {{($role->id == 4)? 'selected' : ''}}>{{$role->title}}</option>
                                                 @endforeach

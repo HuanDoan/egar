@@ -6,8 +6,9 @@ $(document).ready(function(){
 });
 
 function triggerFormSubmit(){
-    
-    //$('form#EditUserForm').submit();
+    var token = $('meta[name=csrf-token]').attr('content');
+    $('form#EditUserForm input[name=_token]').val(token);
+    $('form#EditUserForm').submit();
 }
 
 function loadUser(btn){
@@ -20,8 +21,9 @@ function loadUser(btn){
             if(data != null && data != undefined && data != ''){
                 var data = data.success;
                 $('#EditUserForm #Username').val(data.username);
+                $('#EditUserForm input[name=current_username]').val(data.username);
                 $('#EditUserForm #Email').val(data.email);
-                $('#EditUserForm #Fullname').val(data.fullnane);
+                $('#EditUserForm #Fullname').val(data.fullname);
                 $('#EditUserForm #Phone').val(data.phone);
                 $('#EditUserForm #Role').val(data.role);
                 $('#EditUserForm #Status').val(data.status);
@@ -44,4 +46,21 @@ function resetForm(){
         var $this = $(this);
         $this.val('');
     });
+}
+
+function banUser(btn){
+    var link = $(btn).attr('data-link');
+    swal({
+        title: "Confirm",
+        text: "Bạn có muốn cấm người dùng này?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes",
+        closeOnConfirm: false
+    },
+    function(){
+        window.location.href = link;
+    });
+    
 }

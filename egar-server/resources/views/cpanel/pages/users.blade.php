@@ -18,6 +18,19 @@
         <h1 class="page-title"> QUẢN LÝ NGƯỜI DÙNG</h1>
         <!-- END PAGE TITLE-->
         <!-- END PAGE HEADER-->
+        @if ($errors->any())
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN EXAMPLE TABLE PORTLET-->
@@ -92,10 +105,9 @@
                                         {{date('d/m/Y', strtotime($user->created_at))}}
                                     </td>
                                     <td>
-                                        
                                         <a href="javascript:void(0)" onclick="loadUser(this)" data-value="{{$user->username}}" class="btn green btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                                        <a href="javascript:void(0)" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a>
-                                        <a href="javascript:void(0)" class="btn dark btn-xs"><i class="fa fa-ban"></i> Ban</a>
+                                        <!-- <a href="javascript:void(0)" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a> -->
+                                        <a href="javascript:void(0)" data-link="{{route('cpanel.get.ban.user', $user->username)}}" onclick="banUser(this)" class="btn dark btn-xs"><i class="fa fa-ban"></i> Ban</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -111,6 +123,12 @@
 </div>
 
 @include('cpanel.include.user_modal')
+
+@if(Session::has('editSuccess'))
+<script>
+    swal('Thành công!', 'Chỉnh sửa nguời dùng thành công', 'success');
+</script>
+@endif
 
 
 @endsection

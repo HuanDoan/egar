@@ -18,9 +18,6 @@ $(document).ready(function(){
         lat: 10.8697373,
         lng: 106.8011863,
         title: 'Đại học Công nghệ thông tin ĐHQG HCM',
-        click: function(e) {
-          alert('You clicked in this marker');
-        }
     });
 
     $('input[name=search]').keypress(function(e){

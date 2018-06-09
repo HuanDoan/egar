@@ -70,7 +70,13 @@
                                     <td>
                                         {{$store->name}}
                                     </td>
-                                    <td><img width="200" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDW0_GfwJ549_8H7iUTPt1FQzYfh9vTNhp3hyLKzadSwJKLuzZ" alt=""></td>
+                                    <td>
+                                        @if($store->avatar != NULL)
+                                        <img width="200" title="{{$store->name}}" src="{{$store->avatar}}" alt="{{$store->name}}">
+                                        @else
+                                        <img width="200" src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" title="Have no image">
+                                        @endif
+                                    </td>
                                     <td>{{$store->address}}</td>
                                     <td>
                                         <a href="#" class="btn btn-sm default">
@@ -83,13 +89,20 @@
                                         @if($store->status == 1)
                                         <span class="btn btn-xs green"> Accepted </span>
                                         @endif
-                                        @if($store->status == 0)
+                                        @if($store->status == 2)
                                         <span class="btn btn-xs purple"> Pending </span>
-                                        @endif                                   
+                                        @endif   
+                                        @if($store->status == 0)
+                                        <span class="btn btn-xs dark"> Removed </span>
+                                        @endif                                
                                     </td>
                                     <td>
                                         <a href="#" class="btn green btn-xs"><i class="fa fa-edit"></i> Edit</a>
-                                        <a href="#" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a>
+                                        @if($store->status != 0)
+                                        <a href="javascript:void(0)" data-link="{{route('cpanel.store.remove', $store->id)}}" onclick="removeStore(this)" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a>
+                                        @else
+                                        <a href="javascript:void(0)" data-link="{{route('cpanel.store.delete', $store->id)}}" onclick="deleteStore(this)" class="btn dark btn-xs"><i class="fa fa-trash"></i> Delete</a>  
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -101,6 +114,11 @@
             </div>
         </div>
     </div>
+    @if(Session::has('removesuccess'))
+    <script>
+        swal('Thành công!', 'Remove Store thành công', 'success');
+    </script>
+    @endif
     <!-- END CONTENT BODY -->
 </div>
 @endsection

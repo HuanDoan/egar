@@ -4,7 +4,9 @@
         <h4 class="modal-title">Edit User</h4>
     </div>
     <div class="modal-body">
-        <form id="EditUserForm" method="post" action="{{route('cpanel.post.update.user')}}" class="form-horizontal">
+        <form enctype="multipart/form-data" id="EditUserForm" method="post" action="{{route('cpanel.post.update.user')}}" class="form-horizontal">
+            {{csrf_field()}}
+            <input type="hidden" name="current_username" value="">
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group">
@@ -16,7 +18,7 @@
                     <div class="form-group">
                         <label for="Email" class="col-sm-3 control-label">Email:</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="Email" name="email" placeholder="Email" required>
+                            <input disabled type="email" class="form-control" id="Email" name="email" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="form-group">

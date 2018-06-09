@@ -42,6 +42,7 @@ Route::group(['middleware' => 'admin.auth'], function(){
             Route::get('/add-new', 'Web\CpanelController@get_add_users')->name('cpanel.get.add.users');
             Route::post('/add-new', 'Web\CpanelController@post_add_users')->name('cpanel.post.add.users');
             Route::post('/update', 'Web\CpanelController@updateUser')->name('cpanel.post.update.user');
+            Route::get('/ban/{username}', 'Web\CpanelController@banUser')->name('cpanel.get.ban.user');
         });
 
         Route::group(['prefix' => 'store'], function(){
@@ -51,7 +52,8 @@ Route::group(['middleware' => 'admin.auth'], function(){
             Route::get('/{id}', 'Web\StoreController@show')->name('cpanel.store.show');
             Route::get('/{id}/edit')->name('cpanel.store.edit');
             Route::put('/{id}')->name('cpanel.store.update');
-            Route::delete('/{id}')->name('cpanel.store.delete');
+            Route::get('/delete/{id}', 'Web\StoreController@destroy')->name('cpanel.store.delete');
+            Route::get('/remove/{id}', 'Web\StoreController@remove')->name('cpanel.store.remove');
         });
     });
 });

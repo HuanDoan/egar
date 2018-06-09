@@ -47,4 +47,5 @@
 
         <script src="{{ url('/cpanel/customize/app.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/customize/page--users.js')}}" type="text/javascript"></script>
+        <script src="{{ url('/cpanel/customize/page--store.js')}}" type="text/javascript"></script>
         <script src="{{ url('/cpanel/customize/gmap--store.js')}}" type="text/javascript"></script>
