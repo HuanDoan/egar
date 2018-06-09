@@ -52,6 +52,13 @@ php artisan db:seed --class=UserTableSeeder
 
 Sau đó vào lại phpmyadmin kiểm tra database.
 
+### Generate Application key
+Chạy lệnh ở root folder:
+
+```
+php artisan key:generate
+```
+
 ### Add appications to Oauth2 Passport
 
 Sau khi migrate database, tạo client cho oauth2.
