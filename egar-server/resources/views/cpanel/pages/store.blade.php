@@ -97,7 +97,7 @@
                                         @endif                                
                                     </td>
                                     <td>
-                                        <a href="#" class="btn green btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                        <a href="javascript:void(0)" data-link="{{route('ajax.store.get', $store->id)}}" onclick="openStoreModal(this)" class="btn green btn-xs"><i class="fa fa-edit"></i> Edit</a>
                                         @if($store->status != 0)
                                         <a href="javascript:void(0)" data-link="{{route('cpanel.store.remove', $store->id)}}" onclick="removeStore(this)" class="btn red btn-xs"><i class="fa fa-trash"></i> Remove</a>
                                         @else
@@ -114,6 +114,9 @@
             </div>
         </div>
     </div>
+
+    @include('cpanel.include.store_modal')
+
     @if(Session::has('removesuccess'))
     <script>
         swal('Thành công!', 'Remove Store thành công', 'success');

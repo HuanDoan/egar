@@ -81,10 +81,12 @@ class StoreController extends Controller
 
         $new_store = $request->all();
         $new_store['created_by'] = $user_id;
-        $new_store['status'] = 1;
+        $new_store['status'] = 2;
         $new_store['avatar'] = $path;
         $new_store['rate'] = 0;
         $store = Store::create($new_store);
+
+        return redirect()->back()->with('addsuccess', 'success');
     }
 
     /**

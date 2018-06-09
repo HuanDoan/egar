@@ -35,6 +35,7 @@ Route::group(['middleware' => 'admin.auth'], function(){
 
         Route::group(['prefix' => 'ajax'], function(){
             Route::get('/get-user/{username}', 'Web\AjaxController@getUserByUsername')->name('ajax.user.get');
+            Route::get('/get-store/{storeId}', 'Web\AjaxController@getStoreByStoreId')->name('ajax.store.get');
         });
 
         Route::group(['prefix' => 'users'], function(){
