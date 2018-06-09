@@ -37,6 +37,14 @@ thêm dòng
 > Nhớ thay cái *egarserver* bằng cái **ServerName** đặt mới nãy nha
 
 Restart lại xampp là chạy được rồi.
+
+### Upadte và Install các pakage cần thiết
+Chạy
+```
+composer install
+composer update
+```
+
 À quên, còn phải import database nữa chớ.
 
 Truy cập vào link:
